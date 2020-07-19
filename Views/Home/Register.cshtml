@@ -1,0 +1,149 @@
+﻿
+
+
+
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/css/prettyPhoto.css" rel="stylesheet">
+    <link href="~/Content/css/price-range.css" rel="stylesheet">
+    <link href="~/Content/css/animate.css" rel="stylesheet">
+    <link href="~/Content/css/main.css" rel="stylesheet">
+    <link href="~/Content/css/responsive.css" rel="stylesheet">
+</head>
+
+
+
+
+<script lang="ja" type="text/javascript">
+   
+
+    function Validateform() {
+
+        var uname = document.getElementById('idusername').value;
+        var  pass = document.getElementById('idpass').value;
+
+        if (uname == "") {
+            alert("Please enter username");
+            return false;
+        }
+        else if (pass == "") {
+            alert("Please enter password");
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
+
+    function Confirm1() {
+
+        var fname = document.getElementById('idfname').value;
+        var email = document.getElementById('idemail').value;
+        var mobile = document.getElementById('idmobile').value;
+        var pass = document.getElementById('idpassword').value;
+
+
+        if (fname == "") {
+            alert("Please enter FristName");
+            return false;
+        }
+        else if (email == "") {
+            alert("Please enter EmailId");
+            return false;
+        }
+        else if (mobile == "") {
+            alert("Please enter mobileno");
+            return false;
+        }
+        else if (pass == "") {
+            alert("Please enter Password");
+            return false;
+        }
+
+        else {
+            return true;
+        }
+
+    }
+
+</script>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success" style="float: none;" role="alert">
+
+        <b>@TempData["Message"]</b>
+
+    </div>
+}
+<body style="background-color : lightpink">
+    @using (Html.BeginForm("register", "Home", new { url = "Register" }, FormMethod.Post))
+    {
+            @Html.AntiForgeryToken()
+            <section id="form">
+                <!--form-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 col-sm-offset-1">
+                            <div class="login-form">
+                                <!--login form-->
+                                <h2>Login to your account</h2>
+                                @* <form action="#">*@
+                                <input type="text" id="idusername" class="form-control" name="username" placeholder="Email/Phone">
+                                <br />
+                                <br />
+                                <input type="text" name="Pass" class="form-control" id="idpass" placeholder="Password">
+                                <br />
+                                <br />
+
+                                <input type="submit" name="button" onclick="return Validateform();"  value="Login" class="btn btn-default" />
+                                <br />
+                                <br />
+                                    <button type="submit" value="reset" class="btn btn-default">Reset Password</button>
+
+                            </div><!--/login form-->
+                        </div>
+                        <div class="col-sm-1">
+                            <h2 class="or">OR</h2>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="signup-form">
+                                <!--sign up form-->
+                                <h2>New User Signup!</h2>
+                                @*<form action="#">*@
+                                <input type="text" name="FristName" class="form-control" id="idfname" placeholder="First name" />
+                                <br />
+                                <br />
+                                <input type="text" name="LastName" class="form-control" placeholder="Last name" />
+                                <br />
+                                <br />
+                                <input type="text" name="EmailId" class="form-control" id="idemail" placeholder="Email ID" />
+                                <br />
+                                <br />
+                                <input type="text" name="mobileno" class="form-control" id="idmobile" placeholder="Mobile no" />
+                                <br />
+                                <br />
+                                <input type="text" name="Password" class="form-control" id="idpassword" placeholder="set Password" />
+                                <br />
+                                <br />
+                                <input type="submit" name="button" onclick="return Confirm1();" value="Signup" class="btn btn-default" />
+                            </div><!--/sign up form-->
+                        </div>
+                    </div>
+                </div>
+            </section><!--/form-->
+        }
+
+
+
+        <script src="~/Content/js/bootstrap.min.js"></script>
+            <script src="~/Content/js/jquery.scrollUp.min.js"></script>
+            <script src="~/Content/js/price-range.js"></script>
+            <script src="~/Content/js/jquery.prettyPhoto.js"></script>
+            <script src="~/Content/js/main.js"></script>
+
+
+        </body>

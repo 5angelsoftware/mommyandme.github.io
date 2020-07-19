@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewBag.Title = "productdetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using System.Data
+@model DataTable
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success" style="float: none;" role="alert">
+
+        <b>@TempData["Message"]</b>
+
+    </div>
+}
+
+<head>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/css/prettyPhoto.css" rel="stylesheet">
+    <link href="~/Content/css/price-range.css" rel="stylesheet">
+    <link href="~/Content/css/animate.css" rel="stylesheet">
+    <link href="~/Content/css/main.css" rel="stylesheet">
+    <link href="~/Content/css/responsive.css" rel="stylesheet">
+</head>
+
+
+
+
+
+<body style="background-color : lightpink">
+    <h2>productdetail</h2>
+
+@foreach (DataRow dr in Model.Rows)
+{
+    <div class="col-sm-9 padding-right">
+        <div class="product-details">
+            <!--product-details-->
+            <div class="col-sm-5">
+                <div class="view-product">
+                    <img src="~/ProductImg/@dr["ProductImage"]" alt="" />
+                    @*<h3>ZOOM</h3>*@
+                </div>
+                @*<div id="similar-product" class="carousel slide" data-ride="carousel">
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <a href=""><img src="~/Content/images/product-details/similar1.jpg" alt=""></a>
+                                <a href=""><img src="~/Content/images/product-details/similar2.jpg" alt=""></a>
+                                <a href=""><img src="~/Content/images/product-details/similar3.jpg" alt=""></a>
+                            </div>
+                            <div class="item">
+                                <a href=""><img src="~/Content/images/product-details/similar1.jpg" alt=""></a>
+                                <a href=""><img src="~/Content/images/product-details/similar2.jpg" alt=""></a>
+                                <a href=""><img src="~/Content/images/product-details/similar3.jpg" alt=""></a>
+                            </div>
+                            <div class="item">
+                                <a href=""><img src="~/Content/images/product-details/similar1.jpg" alt=""></a>
+                                <a href=""><img src="~/Content/images/product-details/similar2.jpg" alt=""></a>
+                                <a href=""><img src="~/Content/images/product-details/similar3.jpg" alt=""></a>
+                            </div>
+
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left item-control" href="#similar-product" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right item-control" href="#similar-product" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>*@
+
+            </div>
+            <div class="col-sm-7">
+                <div class="product-information">
+                    <!--/product-information-->
+                    <img src="~/Content/images/product-details/new.jpg" class="newarrival" alt="" />
+                    <h2>@dr["ProductName"]</h2>
+                    <p>@dr["Discription"]</p>
+                    <img src="~/Content/images/product-details/rating.png" alt="" />
+                    <span>
+                        <span> @dr["DiplayPrice"]৳.</span>
+                        <label>
+                            @if (Convert.ToInt64(@dr["Quantity"]) > 0)
+                            {
+                                using (Html.BeginForm("AddToCart", "Home", new { productId = @dr["ProductId"], url = "Index" }, FormMethod.Post))
+                                {
+                                    <button type="submit" class="pull-right"><i class="fa fa-shopping-cart"></i></button>
+                                }
+                                <br />
+                                <br />
+                                <label>Available</label>
+                            }
+                            else
+                            {
+                                <label>Not Available</label>
+                            }
+                        </label>
+                    </span>
+                    <p><b>Availability:</b> In Stock</p>
+                    <p><b>Condition:</b> New</p>
+
+
+
+                </div><!--/product-information-->
+            </div>
+
+
+
+        </div><!--/product-details-->
+
+        <div class="form-one">
+            <form>
+                <input type="text" placeholder="pincode" />
+        
+
+
+            @using (Html.BeginForm("Check", "Home", new { url = "productdetail" }, FormMethod.Post))
+                {
+                <button type="submit" value="Check" class="btn btn-primary">Check</button>
+            }
+
+</form>
+            </div>
+
+    </div>
+
+}
+
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery.scrollUp.min.js"></script>
+    <script src="~/Content/js/price-range.js"></script>
+    <script src="~/Content/js/jquery.prettyPhoto.js"></script>
+    <script src="~/Content/js/main.js"></script>
+
+</body>

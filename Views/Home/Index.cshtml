@@ -1,0 +1,189 @@
+﻿@model mommyandme.Models.Home.HomeIndexViewModel
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/css/prettyPhoto.css" rel="stylesheet">
+    <link href="~/Content/css/price-range.css" rel="stylesheet">
+    <link href="~/Content/css/animate.css" rel="stylesheet">
+    <link href="~/Content/css/main.css" rel="stylesheet">
+    <link href="~/Content/css/responsive.css" rel="stylesheet">
+</head>
+
+<body style="background-color : lightpink">
+    <section id="slider">
+        <!--slider-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#slider-carousel" data-slide-to="1"></li>
+                            <li data-target="#slider-carousel" data-slide-to="2"></li>
+                        </ol>
+
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="col-sm-6">
+                                    <h1><span>E</span>-SHOPPER</h1>
+                                    <h2>Free E-Commerce Template</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src="~/Content/images/home/girl1.jpg" class="girl img-responsive" alt="" />
+                                    <img src="~/Content/images/home/pricing.png" class="pricing" alt="" />
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="col-sm-6">
+                                    <h1><span>E</span>-SHOPPER</h1>
+                                    <h2>100% Responsive Design</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src="~/Content/images/home/girl2.jpg" class="girl img-responsive" alt="" />
+                                    <img src="~/Content/images/home/pricing.png" class="pricing" alt="" />
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="col-sm-6">
+                                    <h1><span>Mommy</span> And Me</h1>
+                                    <h2>Free Ecommerce Template</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src="~/Content/images/home/girl3.jpg" class="girl img-responsive" alt="" />
+                                    <img src="~/Content/images/home/pricing.png" class="pricing" alt="" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section><!--/slider-->
+
+    <div class="olContent f1"><h2 style="color:black">Search Product/Category</h2></div>
+    <form method="post">
+        <div class="olSearch fr">
+            <input type="text" name="search" placeholder="Enter Keyword" class="inputComn form-control" />
+            <div class="searchIcon">
+                <button type="submit" class="searchBtn">
+                    <img src="~/Images/searchIcon.png" />
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h2>Our products <small>trends products</small></h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row product-container">
+        @foreach (var item in Model.ListOfProducts)
+        {
+            <div class="col-sm-4">
+                <div class="product-image-wrapper">
+                    <div class="single-products">
+                        <div class="productinfo text-center">
+                            <img src="~/ProductImg/@item.ProductImage" alt="" />
+                            <h5>@item.ProductName</h5>
+                            <h2>@item.Price ৳.</h2>
+                            <p>@item.Discription</p>
+                            <p>
+                                @if (item.Quantity > 0)
+                                {
+                                    using (Html.BeginForm("AddToCart", "Home", new { productId = item.ProductId, url = "Index" }, FormMethod.Post))
+                                    {
+                                        <button type="submit" class="pull-right"><i class="fa fa-shopping-cart"></i></button>
+                                    }
+                                <p>Available</p>
+                                }
+                                else
+                                {
+                                    <p>Not Available</p>
+                                }
+                                </p>
+                            </div>
+                            <div class="product-overlay">
+                                <div class="overlay-content">
+                                    @using (Html.BeginForm("productdetail", "Home", new { productId = item.ProductId }, FormMethod.Post))
+                                    {
+                                    <button type="submit">click here for more detail</button>
+                                    }
+                                    <h2>@item.Price ৳.</h2>
+                                    <p>@item.Discription</p>
+                                    <p>
+                                        @if (item.Quantity > 0)
+                                        {
+                                            using (Html.BeginForm("AddToCart", "Home", new { productId = item.ProductId, url = "Index" }, FormMethod.Post))
+                                            {
+                                                <button type="submit" class="pull-right"><i class="fa fa-shopping-cart"></i></button>
+                                            }
+                                        <p>Available</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Not Available</p>
+                                        }
+                                        </p>
+                                        <div class="product-item-badge">
+                                            @if (item.IsFeatured == true)
+                                            {
+                                                <p>New</p>
+
+                                            }
+                                            else
+                                            {
+                                                <p>Old</p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                   
+        }
+
+    </div>
+
+    <div class="container">
+        @Html.PagedListPager(Model.ListOfProducts, page => Url.Action("Index", new { page, search = Request.QueryString["search"] }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayItemSliceAndTotal = true })
+    </div>
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery.scrollUp.min.js"></script>
+    <script src="~/Content/js/price-range.js"></script>
+    <script src="~/Content/js/jquery.prettyPhoto.js"></script>
+    <script src="~/Content/js/main.js"></script>
+
+
+</body>

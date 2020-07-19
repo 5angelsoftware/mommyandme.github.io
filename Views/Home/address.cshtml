@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "address";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script lang="ja" type="text/javascript">
+
+    function Validateform() {
+
+        var name = document.getElementById('idname').value;
+        var mobile = document.getElementById('idmobile').value;
+        var pincode = document.getElementById('idpincode').value;
+        var locality = document.getElementById('idlocality').value;
+        var add1 = document.getElementById('idadd1').value;
+        var State = document.getElementById('Stateid').value;
+        var city = document.getElementById('idcity').value;
+
+        if (name == "") {
+            alert("Please enter Name");
+            return false;
+        }
+        else if (mobile == "") {
+            alert("Please enter Mobile");
+            return false;
+        }
+        else if (pincode == "") {
+            alert("Please enter pincode");
+            return false;
+        }
+        else if (locality == "") {
+            alert("Please enter locality");
+            return false;
+        }
+        else if (add1 == "") {
+            alert("Please enter address 1");
+            return false;
+        }
+        else if (State == "-- State --") {
+            alert("Please select state");
+            return false;
+        }
+        else if (city == "") {
+            alert("Please enter city");
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
+</script>
+
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/css/prettyPhoto.css" rel="stylesheet">
+    <link href="~/Content/css/price-range.css" rel="stylesheet">
+    <link href="~/Content/css/animate.css" rel="stylesheet">
+    <link href="~/Content/css/main.css" rel="stylesheet">
+    <link href="~/Content/css/responsive.css" rel="stylesheet">
+</head>
+
+
+<body style="background-color : lightpink">
+
+    @using (Html.BeginForm("order", "Home", new { url = "Register" }, FormMethod.Post))
+    {
+        <section id="form">
+            <!--form-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 col-sm-offset-1">
+                        <div class="login-form">
+                            <h2>Address</h2>
+
+                            <input type="text" id="idname" class="form-control" name="name" placeholder="Name*">
+                            <br />
+                            <br />
+                            <input type="text" name="mobile" class="form-control" id="idmobile" placeholder="10 digit mobile number*">
+                            <br />
+                            <br />
+                            <input type="text" name="pincode" class="form-control" id="idpincode" placeholder="pincode*">
+                            <br />
+                            <br />
+                            <input type="text" name="Locality" class="form-control" id="idlocality" placeholder="Locality*">
+                            <br />
+                            <br />
+                            <input type="text" name="add1" class="form-control" id="idadd1" placeholder="Address 1 *">
+                            <br />
+                            <br />
+                            <input type="text" name="add2" class="form-control" placeholder="Address 2">
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-1">
+                        <h2></h2>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="signup-form">
+                            <br />
+                            <br />
+                            <br />
+                            <input type="text" id="idcity" name="city" class="form-control" placeholder="City/District/Town">
+                            <br />
+                            <br />
+                            <select class="form-control" id="Stateid" name="state">
+                                <option>-- State --</option>
+                                <option>Gujarat</option>
+                                <option>Maharastra</option>
+                                <option>UP</option>
+                                <option>Bihar</option>
+                                <option>Rajsthan</option>
+                                <option>Hariyana</option>
+                                <option>Punjab</option>
+                                <option>Karnataka</option>
+                            </select>
+                            <br />
+                            <br />
+                            <input type="text" name="landmark" class="form-control" placeholder="Landmark(optional)">
+                            <br />
+                            <br />
+                            <input type="text" name="altphone" class="form-control" placeholder="Alternate phone(optional)">
+                            <br />
+                            <br />
+                            <div class="col-sm-3">
+                                <button type="submit" value="continue" onclick="return Validateform();" class="btn btn-primary">continue</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <script src="~/Content/js/jquery.js"></script>
+        <script src="~/Content/js/bootstrap.min.js"></script>
+        <script src="~/Content/js/jquery.scrollUp.min.js"></script>
+        <script src="~/Content/js/price-range.js"></script>
+                    <script src="~/Content/js/jquery.prettyPhoto.js"></script>
+                    <script src="~/Content/js/main.js"></script>
+    }
+</body>
+
+
+
